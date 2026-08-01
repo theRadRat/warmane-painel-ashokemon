@@ -1,0 +1,109 @@
+{
+  "nome": "Ashokemon",
+  "realm": "Icecrown",
+  "guilda": "Wrathborns",
+  "nivel": "17",
+  "raca": "Blood Elf",
+  "classe": "Warlock",
+  "faccao": "Horde",
+  "online": false,
+  "pontosConquista": "10",
+  "abates": 0,
+  "modeloFrames": [
+    "modelo_00.png",
+    "modelo_01.png",
+    "modelo_02.png",
+    "modelo_03.png",
+    "modelo_04.png",
+    "modelo_05.png",
+    "modelo_06.png",
+    "modelo_07.png",
+    "modelo_08.png",
+    "modelo_09.png",
+    "modelo_10.png",
+    "modelo_11.png"
+  ],
+  "equipamento": [
+    {
+      "slot": 0,
+      "nome": "Worn Cloak",
+      "itemId": "1733",
+      "icone": "icones/inv_misc_cape_08.jpg",
+      "qualidade": 0
+    },
+    {
+      "slot": 1,
+      "nome": "Light Silk Robe",
+      "itemId": "23367",
+      "icone": "",
+      "qualidade": null
+    },
+    {
+      "slot": 2,
+      "nome": "Acolyte's Shirt",
+      "itemId": "6097",
+      "icone": "icones/inv_shirt_01.jpg",
+      "qualidade": 1
+    },
+    {
+      "slot": 3,
+      "nome": "Sunrise Bracers",
+      "itemId": "20992",
+      "icone": "",
+      "qualidade": null
+    },
+    {
+      "slot": 4,
+      "nome": "Calico Gloves",
+      "itemId": "1498",
+      "icone": "icones/inv_gauntlets_18.jpg",
+      "qualidade": 0
+    },
+    {
+      "slot": 5,
+      "nome": "Wyrm Sash",
+      "itemId": "20998",
+      "icone": "",
+      "qualidade": null
+    },
+    {
+      "slot": 6,
+      "nome": "Striding Pants",
+      "itemId": "21001",
+      "icone": "",
+      "qualidade": null
+    },
+    {
+      "slot": 7,
+      "nome": "Satin Lined Boots",
+      "itemId": "23267",
+      "icone": "",
+      "qualidade": null
+    },
+    {
+      "slot": 8,
+      "nome": "Smooth Metal Staff",
+      "itemId": "22959",
+      "icone": "",
+      "qualidade": null
+    },
+    {
+      "slot": 9,
+      "nome": "Hoodoo Wand",
+      "itemId": "22971",
+      "icone": "",
+      "qualidade": null
+    }
+  ],
+  "stats": {
+    "spellPower": "0",
+    "spellHit": "0%",
+    "spellCrit": "0%",
+    "haste": "0%",
+    "intellect": "46",
+    "stamina": "30",
+    "spirit": "41",
+    "armor": "128"
+  },
+  "atualizadoEm": "01/08 18:36"
+}
