@@ -29,13 +29,13 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "icone": "icones/inv_misc_cape_08.jpg",
-      "qualidade": 0
+      "qualidade": null
     },
     {
       "slot": 1,
       "nome": "Light Silk Robe",
       "itemId": "23367",
-      "icone": "",
+      "icone": "icones/inv_chest_cloth_24.jpg",
       "qualidade": null
     },
     {
@@ -43,13 +43,13 @@
       "nome": "Acolyte's Shirt",
       "itemId": "6097",
       "icone": "icones/inv_shirt_01.jpg",
-      "qualidade": 1
+      "qualidade": null
     },
     {
       "slot": 3,
       "nome": "Sunrise Bracers",
       "itemId": "20992",
-      "icone": "",
+      "icone": "icones/inv_bracer_12.jpg",
       "qualidade": null
     },
     {
@@ -57,41 +57,41 @@
       "nome": "Calico Gloves",
       "itemId": "1498",
       "icone": "icones/inv_gauntlets_18.jpg",
-      "qualidade": 0
+      "qualidade": null
     },
     {
       "slot": 5,
       "nome": "Wyrm Sash",
       "itemId": "20998",
-      "icone": "",
+      "icone": "icones/inv_belt_03.jpg",
       "qualidade": null
     },
     {
       "slot": 6,
       "nome": "Striding Pants",
       "itemId": "21001",
-      "icone": "",
+      "icone": "icones/inv_pants_12.jpg",
       "qualidade": null
     },
     {
       "slot": 7,
       "nome": "Satin Lined Boots",
       "itemId": "23267",
-      "icone": "",
+      "icone": "icones/inv_boots_03.jpg",
       "qualidade": null
     },
     {
       "slot": 8,
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
-      "icone": "",
+      "icone": "icones/inv_staff_38.jpg",
       "qualidade": null
     },
     {
       "slot": 9,
       "nome": "Hoodoo Wand",
       "itemId": "22971",
-      "icone": "",
+      "icone": "icones/inv_staff_02.jpg",
       "qualidade": null
     }
   ],
@@ -105,5 +105,5 @@
     "spirit": "41",
     "armor": "128"
   },
-  "atualizadoEm": "01/08 20:46"
+  "atualizadoEm": "01/08 21:23"
 }
