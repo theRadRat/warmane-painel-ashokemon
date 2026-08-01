@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personagem — Warmane</title>
+<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+<script>
+/* ============================================================
+   CONFIGURAÇÃO
+   ============================================================
+   BASE_DADOS: a URL da pasta onde o gerar_dados.py publica os
+   arquivos (dados.json, modelo_00.png..., icones/). Precisa
+   terminar com barra. Ex: GitHub Pages, Cloudflare R2, etc.
+
+   Enquanto estiver vazio, o painel roda em modo DEMO com dados
+   de exemplo, pra você ver o visual antes de publicar qualquer
+   coisa.
+   ============================================================ */
+const CONFIG = {
+  BASE_DADOS: 'https://github.com/theRadRat/ashokemonwarmane/tree/main/dados',            // ex: 'https://seuusuario.github.io/warmane/'
+  ROTACAO_MS: 110,           // velocidade da animação do modelo
+  ATUALIZAR_A_CADA_MIN: 10,  // rebusca o dados.json de tempos em tempos
+};
+</script>
+
+<style>
+/* ============================================================
+   Friz Quadrata — a fonte do WoW.
+   É uma fonte comercial, então não vem junto: coloque o arquivo
+   em fonts/ com um destes nomes e ela é usada automaticamente.
+   Sem ela, cai no fallback (Cinzel / serif).
+   ============================================================ */
+@font-face{
+  font-family:'FrizQuadrata';
+  src:url('fonts/friz-quadrata.woff2') format('woff2'),
+      url('fonts/friz-quadrata.woff')  format('woff'),
+      url('fonts/friz-quadrata.ttf')   format('truetype'),
+      url('fonts/friz-quadrata.otf')   format('opentype');
+  font-display:swap;
+}
+
+:root{
+  --fonte: 'FrizQuadrata', 'Cinzel', Georgia, 'Times New Roman', serif;
+
+  --ouro:      #ffd100;
+  --texto:     #e8e0d0;
+  --apagado:   #9c8f79;
+  --linha:     rgba(150,120,70,.28);
+
+  /* qualidades de item */
+  --q0:#9d9d9d; --q1:#ffffff; --q2:#1eff00; --q3:#0070dd;
+  --q4:#a335ee; --q5:#ff8000; --q6:#e6cc80; --q7:#00ccff;
+
+  --slot: 30px;   /* tamanho do ícone no paper doll */
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+  width:320px;
+  height:500px;
+  overflow:hidden;
+  background:transparent;
+  font-family:var(--fonte);
+  color:var(--texto);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Moldura (PAINEL.png em 9 fatias) ---------- */
+#quadro{
+  position:relative;
+  width:320px;
+  height:500px;
+  border:12px solid transparent;
+  border-image-source:url('assets/PAINEL.png');
+  border-image-slice:46 fill;
+  border-image-repeat:stretch;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ---------- Cabeçalho ---------- */
+#topo{
+  flex:0 0 auto;
+  text-align:center;
+  padding:1px 2px 5px;
+  border-bottom:1px solid var(--linha);
+}
+#nome{
+  font-size:17px;
+  line-height:1.1;
+  color:var(--ouro);
+  text-shadow:0 1px 3px #000, 0 0 8px rgba(255,209,0,.2);
+  letter-spacing:.3px;
+}
+#subtitulo{
+  font-size:10px;
+  color:var(--apagado);
+  margin-top:2px;
+  letter-spacing:.2px;
+}
+#guilda{ color:#9fd4ff }
+
+/* ---------- Paper doll ---------- */
+#doll{
+  flex:0 0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:4px;
+  padding:7px 0 3px;
+}
+.coluna{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  flex:0 0 auto;
+}
+
+#palco{
+  flex:1 1 auto;
+  position:relative;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#modelo{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.7));
+  transition:opacity .25s;
+}
+#modelo.carregando{ opacity:0 }
+
+/* fallback quando não há imagem do modelo */
+#semModelo{
+  font-size:9px;
+  color:var(--apagado);
+  text-align:center;
+  line-height:1.5;
+  padding:0 6px;
+}
+
+/* ---------- Armas (linha de baixo) ---------- */
+#armas{
+  flex:0 0 auto;
+  display:flex;
+  justify-content:center;
+  gap:4px;
+  padding-bottom:5px;
+}
+
+/* ---------- Slot de item ---------- */
+.slot{
+  width:var(--slot);
+  height:var(--slot);
+  flex:0 0 auto;
+  border:1px solid #2b2620;
+  border-radius:2px;
+  background:#0b0a09 center/cover no-repeat;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+  cursor:default;
+  position:relative;
+}
+.slot.tem{ cursor:pointer }
+.slot.tem:hover, .slot.tem.ativo{
+  border-color:var(--ouro);
+  box-shadow:0 0 6px rgba(255,209,0,.45), inset 0 0 0 1px rgba(255,209,0,.2);
+}
+.slot.vazio{ background-color:rgba(255,255,255,.025) }
+
+/* ---------- Faixa com o nome do item ---------- */
+#nomeItem{
+  flex:0 0 auto;
+  min-height:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:10.5px;
+  line-height:1.25;
+  padding:2px 6px;
+  border-top:1px solid var(--linha);
+  border-bottom:1px solid var(--linha);
+  color:var(--apagado);
+  text-shadow:0 1px 2px #000;
+}
+
+/* ---------- Atributos ---------- */
+#stats{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  padding:6px 4px 2px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px 10px;
+  align-content:start;
+}
+#stats::-webkit-scrollbar{ width:4px }
+#stats::-webkit-scrollbar-thumb{ background:rgba(255,209,0,.25); border-radius:2px }
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:4px;
+  font-size:10.5px;
+  line-height:1.5;
+  border-bottom:1px dotted rgba(150,120,70,.16);
+}
+.stat .k{ color:var(--apagado); white-space:nowrap }
+.stat .v{ color:var(--texto); font-variant-numeric:tabular-nums }
+.stat.destaque .k{ color:#d8c9a8 }
+.stat.destaque .v{ color:var(--ouro); font-weight:bold }
+.stat.largo{ grid-column:1 / -1 }
+
+/* ---------- Rodapé ---------- */
+#rodape{
+  flex:0 0 auto;
+  text-align:center;
+  font-size:8.5px;
+  color:#6f6350;
+  padding-top:2px;
+}
+#online{ color:#5bd75b }
+#offline{ color:#8a8a8a }
+
+/* ---------- Erro ---------- */
+#erro{
+  display:none;
+  padding:10px;
+  font-size:10px;
+  line-height:1.5;
+  color:var(--apagado);
+  text-align:center;
+}
+body.falhou #erro{ display:block }
+body.falhou #doll,
+body.falhou #nomeItem,
+body.falhou #stats{ display:none }
+
+@media (prefers-reduced-motion:reduce){
+  #modelo{ transition:none }
+}
+</style>
+</head>
+<body>
+
+<div id="quadro">
+
+  <div id="topo">
+    <div id="nome">—</div>
+    <div id="subtitulo"></div>
+  </div>
+
+  <div id="doll">
+    <div class="coluna" id="colEsq"></div>
+    <div id="palco">
+      <img id="modelo" alt="" class="carregando">
+      <div id="semModelo" style="display:none"></div>
+    </div>
+    <div class="coluna" id="colDir"></div>
+  </div>
+
+  <div id="armas"></div>
+
+  <div id="nomeItem">passe o mouse num item</div>
+
+  <div id="stats"></div>
+
+  <div id="erro"></div>
+
+  <div id="rodape"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   Ordem dos slots como a API do Warmane devolve o equipment
+   ============================================================ */
+const SLOTS = [
+  'Cabeça','Pescoço','Ombros','Capa','Peito','Camisa','Tabardo','Punhos',
+  'Mãos','Cintura','Pernas','Pés','Anel 1','Anel 2','Berloque 1','Berloque 2',
+  'Arma principal','Arma secundária','À distância'
+];
+const COL_ESQ  = [0,1,2,3,4,5,6,7];
+const COL_DIR  = [8,9,10,11,12,13,14,15];
+const ARMAS    = [16,17,18];
+
+/* Stats que interessam pra Warlock, na ordem de exibição */
+const STATS_WARLOCK = [
+  ['spellPower',  'Poder Mágico', true],
+  ['spellHit',    'Acerto',       true],
+  ['spellCrit',   'Crítico',      true],
+  ['haste',       'Aceleração',   true],
+  ['intellect',   'Intelecto',    false],
+  ['stamina',     'Vigor',        false],
+  ['spirit',      'Espírito',     false],
+  ['armor',       'Armadura',     false],
+];
+
+const $ = s => document.querySelector(s);
+
+/* ============================================================
+   Dados de demonstração (usados quando BASE_DADOS está vazio)
+   ============================================================ */
+const DEMO = {
+  nome:'Ashokemon', realm:'Icecrown', guilda:'',
+  nivel:'80', raca:'Gnome', classe:'Warlock', faccao:'Alliance', online:false,
+  pontosConquista:'—', abates:'—',
+  atualizadoEm:'modo demonstração',
+  modeloFrames:[],
+  equipamento:[
+    {slot:0,  nome:"Sanctified Dark Coven Hood",        icone:'', qualidade:4},
+    {slot:1,  nome:"Bile-Encrusted Medallion",          icone:'', qualidade:4},
+    {slot:2,  nome:"Sanctified Dark Coven Shoulderpads",icone:'', qualidade:4},
+    {slot:3,  nome:"Shawl of Nature's Cruelty",         icone:'', qualidade:4},
+    {slot:4,  nome:"Sanctified Dark Coven Robe",        icone:'', qualidade:4},
+    {slot:5,  nome:null},
+    {slot:6,  nome:"Tabard of the Argent Crusade",      icone:'', qualidade:2},
+    {slot:7,  nome:"Bejeweled Wizard's Bracers",        icone:'', qualidade:4},
+    {slot:8,  nome:"Sanctified Dark Coven Gloves",      icone:'', qualidade:4},
+    {slot:9,  nome:"Cord of the Patronizing Practitioner", icone:'', qualidade:4},
+    {slot:10, nome:"Sanctified Dark Coven Leggings",    icone:'', qualidade:4},
+    {slot:11, nome:"Plague Scientist's Boots",          icone:'', qualidade:4},
+    {slot:12, nome:"Ring of Rapid Ascent",              icone:'', qualidade:4},
+    {slot:13, nome:"Signet of Twilight",                icone:'', qualidade:4},
+    {slot:14, nome:"Dislodged Foreign Object",          icone:'', qualidade:4},
+    {slot:15, nome:"Phylactery of the Nameless Lich",   icone:'', qualidade:4},
+    {slot:16, nome:"Bloodsurge, Kel'Thuzad's Blade",    icone:'', qualidade:5},
+    {slot:17, nome:"Shadow Silk Spindle",               icone:'', qualidade:4},
+    {slot:18, nome:"Nibelung",                          icone:'', qualidade:4},
+  ],
+  stats:{ spellPower:'3218', spellHit:'12.6%', spellCrit:'34.2%', haste:'27.4%',
+          intellect:'1685', stamina:'2140', spirit:'320', armor:'3894' }
+};
+
+/* ============================================================
+   Montagem do paper doll
+   ============================================================ */
+let BASE = '';   // preenchido no render(); os caminhos do dados.json são relativos a ela
+
+function criaSlot(idx, item){
+  const el = document.createElement('div');
+  el.className = 'slot';
+  el.dataset.idx = idx;
+
+  if (item && item.nome){
+    el.classList.add('tem');
+    if (item.icone) el.style.backgroundImage = `url('${BASE + item.icone}')`;
+    const q = (item.qualidade ?? 1);
+    el.addEventListener('mouseenter', () => mostraNome(item.nome, q, el));
+    el.addEventListener('click',      () => mostraNome(item.nome, q, el));
+  } else {
+    el.classList.add('vazio');
+    el.addEventListener('mouseenter', () => mostraNome(SLOTS[idx] || '', -1, el));
+  }
+  return el;
+}
+
+let slotAtivo = null;
+function mostraNome(texto, qualidade, el){
+  const faixa = $('#nomeItem');
+  faixa.textContent = texto || '—';
+  faixa.style.color = qualidade >= 0
+    ? `var(--q${Math.min(qualidade,7)})`
+    : 'var(--apagado)';
+  if (slotAtivo) slotAtivo.classList.remove('ativo');
+  slotAtivo = el; el.classList.add('ativo');
+}
+
+function montaDoll(equipamento){
+  const porSlot = {};
+  equipamento.forEach(it => { porSlot[it.slot] = it; });
+
+  const esq = $('#colEsq'), dir = $('#colDir'), arm = $('#armas');
+  esq.innerHTML = dir.innerHTML = arm.innerHTML = '';
+
+  COL_ESQ.forEach(i => esq.appendChild(criaSlot(i, porSlot[i])));
+  COL_DIR.forEach(i => dir.appendChild(criaSlot(i, porSlot[i])));
+  ARMAS .forEach(i => arm.appendChild(criaSlot(i, porSlot[i])));
+}
+
+/* ============================================================
+   Atributos
+   ============================================================ */
+function montaStats(stats){
+  const box = $('#stats');
+  box.innerHTML = '';
+  STATS_WARLOCK.forEach(([chave, rotulo, destaque]) => {
+    const valor = stats && stats[chave];
+    if (valor === undefined || valor === null || valor === '') return;
+    const d = document.createElement('div');
+    d.className = 'stat' + (destaque ? ' destaque' : '');
+    d.innerHTML = `<span class="k">${rotulo}</span><span class="v">${valor}</span>`;
+    box.appendChild(d);
+  });
+}
+
+/* ============================================================
+   Modelo: anima os frames em loop (pseudo-3D)
+   ============================================================ */
+let timerRotacao = null;
+
+function montaModelo(frames, base){
+  const img = $('#modelo');
+  const aviso = $('#semModelo');
+  clearInterval(timerRotacao);
+
+  if (!frames || !frames.length){
+    img.style.display = 'none';
+    aviso.style.display = 'block';
+    aviso.textContent = 'Modelo ainda não gerado. Rode o gerar_dados.py.';
+    return;
+  }
+
+  aviso.style.display = 'none';
+  img.style.display = '';
+
+  const urls = frames.map(f => base + f);
+
+  // pré-carrega tudo antes de começar a girar, senão pisca
+  let restantes = urls.length;
+  urls.forEach(u => {
+    const p = new Image();
+    p.onload = p.onerror = () => { if (!--restantes) inicia(); };
+    p.src = u;
+  });
+
+  function inicia(){
+    let i = 0;
+    img.src = urls[0];
+    img.classList.remove('carregando');
+    if (urls.length === 1) return;      // imagem única: sem animação
+    timerRotacao = setInterval(() => {
+      i = (i + 1) % urls.length;
+      img.src = urls[i];
+    }, CONFIG.ROTACAO_MS);
+  }
+}
+
+/* ============================================================
+   Render geral
+   ============================================================ */
+function render(d, base){
+  BASE = base || '';
+  document.body.classList.remove('falhou');
+
+  $('#nome').textContent = d.nome || '—';
+
+  const partes = [];
+  if (d.nivel)  partes.push('Nível ' + d.nivel);
+  if (d.raca)   partes.push(d.raca);
+  if (d.classe) partes.push(d.classe);
+  let sub = partes.join(' ');
+  if (d.guilda) sub += ` &lt;<span id="guilda">${escapa(d.guilda)}</span>&gt;`;
+  $('#subtitulo').innerHTML = sub;
+
+  montaModelo(d.modeloFrames, base);
+  montaDoll(d.equipamento || []);
+  montaStats(d.stats);
+
+  const st = d.online
+    ? '<span id="online">● online</span>'
+    : '<span id="offline">● offline</span>';
+  $('#rodape').innerHTML = `${st} &nbsp;·&nbsp; ${escapa(d.realm || '')} &nbsp;·&nbsp; ${escapa(d.atualizadoEm || '')}`;
+}
+
+function escapa(s){
+  return String(s).replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function falhou(msg){
+  document.body.classList.add('falhou');
+  $('#erro').textContent = msg;
+  $('#rodape').textContent = '';
+}
+
+/* ============================================================
+   Carregamento
+   ============================================================ */
+async function carregar(){
+  const base = CONFIG.BASE_DADOS;
+
+  if (!base){
+    render(DEMO, '');
+    return;
+  }
+
+  try {
+    const url = base + 'dados.json?t=' + Date.now();   // fura cache
+    const resp = await fetch(url, { cache:'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const d = await resp.json();
+    render(d, base);
+  } catch (e){
+    falhou(
+      'Não consegui carregar os dados.\n\n' +
+      'Confira se BASE_DADOS está correto e se o domínio foi declarado ' +
+      'em Capabilities → Allowlist (connect-src e img-src) no Developer Console.\n\n' +
+      '(' + e.message + ')'
+    );
+  }
+}
+
+/* Twitch Extension Helper — o painel funciona sem ele (modo demo),
+   mas em produção esperamos o onAuthorized antes de buscar. */
+if (window.Twitch && window.Twitch.ext){
+  window.Twitch.ext.onAuthorized(() => carregar());
+  window.Twitch.ext.onError(() => carregar());
+  setTimeout(() => { if (!$('#nome').textContent.trim() || $('#nome').textContent === '—') carregar(); }, 2500);
+} else {
+  carregar();
+}
+
+if (CONFIG.ATUALIZAR_A_CADA_MIN > 0){
+  setInterval(carregar, CONFIG.ATUALIZAR_A_CADA_MIN * 60 * 1000);
+}
+</script>
+</body>
+</html>

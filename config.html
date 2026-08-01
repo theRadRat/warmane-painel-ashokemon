@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Configuração</title>
+<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+<style>
+  body{
+    font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background:#18181b; color:#efeff1;
+    padding:24px; line-height:1.6; font-size:14px;
+  }
+  h1{ font-size:18px; margin-bottom:4px }
+  p{ color:#adadb8; margin-bottom:14px }
+  code{
+    background:#0e0e10; padding:2px 6px; border-radius:4px;
+    font-family:ui-monospace, Consolas, monospace; font-size:13px; color:#bf94ff;
+  }
+  ol{ margin:0 0 16px 20px }
+  li{ margin-bottom:8px; color:#adadb8 }
+  .ok{ color:#00f593 }
+</style>
+</head>
+<body>
+  <h1>Painel do Personagem — Warmane</h1>
+  <p>Esta extensão não precisa de configuração pela Twitch. <span class="ok">Pode fechar esta janela e ativar o painel.</span></p>
+
+  <p>Tudo é definido no arquivo <code>panel.html</code>, antes de você subir o .zip:</p>
+  <ol>
+    <li>Abra <code>panel.html</code> num editor de texto</li>
+    <li>No topo, preencha <code>BASE_DADOS</code> com a URL pública da pasta <code>dados/</code></li>
+    <li>Empacote e suba de novo em <b>Files</b> no Developer Console</li>
+  </ol>
+
+  <p>Se deixar <code>BASE_DADOS</code> vazio, o painel roda em modo demonstração com dados de exemplo.</p>
+</body>
+</html>
