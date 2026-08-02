@@ -2,9 +2,8 @@ name: Atualizar painel do personagem
 
 on:
   schedule:
-    # A cada 30 minutos. Sintaxe cron; o GitHub usa UTC, mas como
-    # é intervalo fixo isso não faz diferença aqui.
-    - cron: '*/30 * * * *'
+    # A cada 2 minutos.
+    - cron: '*/2 * * * *'
   workflow_dispatch:        # permite disparar na mão pela aba Actions
 
 # Necessário pro workflow conseguir commitar de volta no repositório
@@ -35,7 +34,7 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Gerar os dados
-        run: python gerar_dados.py --nome Yananana --realm Icecrown --frames 12
+        run: python gerar_dados.py --nome Ashokemon --realm Icecrown --frames 12
 
       - name: Commitar se algo mudou
         run: |
