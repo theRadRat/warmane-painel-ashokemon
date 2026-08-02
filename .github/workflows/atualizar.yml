@@ -35,7 +35,7 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Gerar os dados
-        run: python gerar_dados.py --nome Ashokemon --realm Icecrown --frames 12
+        run: python gerar_dados.py --nome Yananana --realm Icecrown --frames 12
 
       - name: Commitar se algo mudou
         run: |
