@@ -2,11 +2,9 @@ name: Atualizar painel do personagem
 
 on:
   schedule:
-    # A cada 2 minutos.
     - cron: '*/2 * * * *'
-  workflow_dispatch:        # permite disparar na mão pela aba Actions
+  workflow_dispatch:
 
-# Necessário pro workflow conseguir commitar de volta no repositório
 permissions:
   contents: write
 
@@ -28,10 +26,30 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Instalar dependências
-        run: |
-          pip install --quiet playwright requests pillow
-          playwright install --with-deps chromium
+      - name: Cache dos pacotes pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('**/requirements.txt') }}-v1
+          restore-keys: pip-
+
+      - name: Cache do Chromium (Playwright)
+        uses: actions/cache@v4
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-v1
+
+      - name: Instalar dependências Python
+        run: pip install --quiet playwright requests pillow
+
+      - name: Instalar Chromium (só se não estiver em cache)
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: playwright install --with-deps chromium
+
+      - name: Instalar dependências do sistema para o Chromium em cache
+        if: steps.cache-playwright.outputs.cache-hit == 'true'
+        run: playwright install-deps chromium
 
       - name: Gerar os dados
         run: python gerar_dados.py --nome Ashokemon --realm Icecrown --frames 12
