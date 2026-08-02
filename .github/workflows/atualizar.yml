@@ -1,0 +1,53 @@
+name: Atualizar painel do personagem
+
+on:
+  schedule:
+    # A cada 30 minutos. Sintaxe cron; o GitHub usa UTC, mas como
+    # é intervalo fixo isso não faz diferença aqui.
+    - cron: '*/30 * * * *'
+  workflow_dispatch:        # permite disparar na mão pela aba Actions
+
+# Necessário pro workflow conseguir commitar de volta no repositório
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-painel
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependências
+        run: |
+          pip install --quiet playwright requests pillow
+          playwright install --with-deps chromium
+
+      - name: Gerar os dados
+        run: python gerar_dados.py --nome Ashokemon --realm Icecrown --frames 12
+
+      - name: Commitar se algo mudou
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add dados/
+
+          if git diff --staged --quiet; then
+            echo "Nada mudou desde a última execução."
+          else
+            git commit -m "atualiza personagem — $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "Dados atualizados e publicados."
+          fi
