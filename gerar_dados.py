@@ -248,7 +248,123 @@ def captura_tooltips(pg, imgs_info):
     return lidas
 
 
-def extrai_icones_do_perfil(pg, equipamento_api):
+def infere_slots_por_posicao(infos):
+    """Descobre o slot de cada ícone pela POSIÇÃO dele na página.
+
+    A ficha da Armory desenha os espaços em posições fixas — duas
+    colunas laterais e uma fileira embaixo, igual ao jogo. Então a
+    coordenada do ícone diz o slot direto, sem depender de texto.
+
+    Isso é mais robusto que ler a tooltip: funciona mesmo se a Armory
+    mudar o texto, traduzir, ou não mostrar tooltip nenhuma.
+    """
+    pos = [i for i in infos if i.get("x") is not None]
+    if len(pos) < 2:
+        return 0
+
+    largura_icone = next((i.get("w") for i in pos if i.get("w")), 40) or 40
+    xs = sorted(i["x"] for i in pos)
+    x_min, x_max = xs[0], xs[-1]
+    espalhamento = x_max - x_min
+
+    # Só faz sentido falar em "duas colunas" se os ícones estiverem
+    # realmente afastados na horizontal. Sem essa checagem, um
+    # personagem que só tem as armas equipadas viraria três colunas
+    # de um item cada.
+    if espalhamento < largura_icone * 4:
+        altura_icone = next((i.get("h") for i in pos if i.get("h")), 40) or 40
+        alcance_y = max(i["y"] for i in pos) - min(i["y"] for i in pos)
+        if alcance_y > altura_icone * 2:
+            esquerda, direita, meio = list(pos), [], []   # uma coluna só
+        else:
+            esquerda, direita, meio = [], [], list(pos)   # uma fileira só
+    else:
+        tol = max(20.0, espalhamento * 0.12)
+        esquerda = [i for i in pos if abs(i["x"] - x_min) <= tol]
+        direita  = [i for i in pos if abs(i["x"] - x_max) <= tol and i not in esquerda]
+        meio     = [i for i in pos if i not in esquerda and i not in direita]
+
+    def mdc_aprox(difs, minimo):
+        """Maior valor que divide (aproximadamente) todas as distâncias."""
+        difs = [d for d in difs if d > 1]
+        if not difs:
+            return None
+        candidatos = []
+        for d in difs:
+            for k in range(1, 9):
+                c = d / k
+                if c >= minimo:
+                    candidatos.append(c)
+        candidatos.sort(reverse=True)
+        for c in candidatos:
+            if all(abs(d / c - round(d / c)) < 0.18 for d in difs):
+                return c
+        return min(difs)
+
+    # O espaçamento é o mesmo nas duas colunas, então junta as
+    # distâncias de ambas antes de estimar. Isso importa: uma coluna
+    # sozinha com poucos itens pode ter todas as distâncias em dobro,
+    # e o espaçamento sairia multiplicado.
+    altura = next((i.get("h") for i in pos if i.get("h")), 1) or 1
+    difs_globais = []
+    for grupo in (esquerda, direita):
+        ys = sorted(i["y"] for i in grupo)
+        difs_globais += [b - a for a, b in zip(ys, ys[1:])]
+    passo = mdc_aprox(difs_globais, max(altura * 0.8, 8)) or altura
+
+    # As duas colunas começam na mesma altura na ficha, então o topo é
+    # o ícone mais alto entre as duas — assim o índice continua certo
+    # mesmo se o primeiro espaço de uma delas estiver vazio.
+    topo_ref = min((i["y"] for i in esquerda + direita), default=None)
+
+    def numera(grupo, base, quantos):
+        if not grupo:
+            return
+        grupo.sort(key=lambda i: i["y"])
+        origem = topo_ref if topo_ref is not None else grupo[0]["y"]
+        for it in grupo:
+            idx = int(round((it["y"] - origem) / passo))
+            slot = base + max(0, min(idx, quantos - 1))
+            it["slot_geo"] = slot
+
+    numera(esquerda, 0, 8)
+    numera(direita, 8, 8)
+    if meio:
+        meio.sort(key=lambda i: i["x"])
+        largura = next((i.get("w") for i in meio if i.get("w")), 1) or 1
+        difs_x = [b["x"] - a["x"] for a, b in zip(meio, meio[1:])]
+        passo_x = mdc_aprox(difs_x, max(largura * 0.8, 8)) or largura
+        origem_x = meio[0]["x"]
+        for it in meio:
+            idx = int(round((it["x"] - origem_x) / passo_x))
+            it["slot_geo"] = 16 + max(0, min(idx, 2))
+
+    achou = sum(1 for i in pos if i.get("slot_geo") is not None)
+    print(f"[web] geometria: {len(esquerda)} à esquerda, {len(direita)} à direita, "
+          f"{len(meio)} embaixo -> {achou} slot(s) posicionado(s)")
+    return achou
+
+
+def escreve_diagnostico(infos, pasta):
+    """Guarda o que foi lido da página, pra facilitar ajuste fino se o
+    posicionamento sair errado."""
+    dados = []
+    for i, info in enumerate(infos):
+        dados.append({
+            "ordem": i,
+            "src": info.get("src"),
+            "x": info.get("x"), "y": info.get("y"),
+            "w": info.get("w"), "h": info.get("h"),
+            "slot_geo": info.get("slot_geo"),
+            "tooltip": (info.get("tooltip") or "")[:400],
+            "html": (info.get("html") or "")[:400],
+        })
+    destino = pasta / "diagnostico.json"
+    destino.write_text(json.dumps(dados, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[web] diagnóstico salvo em {destino}")
+
+
+def extrai_icones_do_perfil(pg, equipamento_api, pasta):
     """Preenche 'icone_url', 'tooltip' e 'slot_real' em cada item de
     equipamento_api, direto do HTML já carregado em pg."""
     try:
@@ -257,14 +373,22 @@ def extrai_icones_do_perfil(pg, equipamento_api):
             """els => els.map((e, i) => {
                 e.setAttribute('data-cap', 'icone-' + i);
                 const a = e.closest('a');
+                const r = e.getBoundingClientRect();
                 let q = null;
                 if (a) {
                     const m = (a.className || '').match(/\\bq([0-7])\\b/);
                     if (m) q = parseInt(m[1]);
                 }
+                // guarda um pedaço do HTML em volta: se o posicionamento
+                // sair errado, é isso que mostra como a página organiza
+                // os espaços de equipamento.
+                const volta = (a && a.parentElement) ? a.parentElement : e.parentElement;
                 return {
                     src: e.getAttribute('src'),
                     qualidade: q,
+                    x: Math.round(r.x), y: Math.round(r.y),
+                    w: Math.round(r.width), h: Math.round(r.height),
+                    html: volta ? volta.outerHTML.slice(0, 400) : null,
                     seletor: '[data-cap="icone-' + i + '"]'
                 };
             })"""
@@ -273,8 +397,11 @@ def extrai_icones_do_perfil(pg, equipamento_api):
         print(f"[aviso] não consegui ler os ícones da página de perfil: {e}")
         infos = []
 
-    if infos:
-        captura_tooltips(pg, infos)
+    if not infos:
+        return
+
+    infere_slots_por_posicao(infos)
+    captura_tooltips(pg, infos)
 
     fila = list(infos)
     achados = 0
@@ -289,18 +416,25 @@ def extrai_icones_do_perfil(pg, equipamento_api):
         if info["qualidade"] is not None:
             item["qualidade"] = info["qualidade"]
 
+        # A tooltip vem primeiro: quando ela existe, diz o slot sem
+        # ambiguidade ("Ranged", "Off Hand"...). A geometria entra
+        # quando a tooltip não foi capturada — ela acerta as colunas,
+        # mas pode se confundir na fileira de armas se faltar peça.
         slot = slot_pela_tooltip(info.get("tooltip"), ocupados)
-        if slot is not None:
+        if slot is None:
+            geo = info.get("slot_geo")
+            if geo is not None and geo not in ocupados:
+                slot = geo
+        if slot is not None and slot not in ocupados:
             ocupados.add(slot)
             item["slot_real"] = slot
         achados += 1
 
+    escreve_diagnostico(infos, pasta)
+
     equipados = sum(1 for it in equipamento_api if it.get("name"))
     com_slot = sum(1 for it in equipamento_api if it.get("slot_real") is not None)
-    print(f"[web] ícones casados: {achados}/{equipados} | slot identificado: {com_slot}/{equipados}")
-    if com_slot < equipados:
-        print("  [aviso] alguns itens ficaram sem slot identificado — eles vão "
-              "cair nos espaços livres, em ordem.")
+    print(f"[web] ícones casados: {achados}/{equipados} | slot definido: {com_slot}/{equipados}")
 
 
 def baixa_icone_url(url, pasta):
@@ -397,7 +531,7 @@ def captura_tudo_via_navegador(nome, realm, pasta, frames, debug, giro_manual=No
             print(f"[aviso] não consegui ler os atributos: {e}")
 
         # --- 3) ícones do equipamento, direto da mesma página ---
-        extrai_icones_do_perfil(pg, api.get("equipment", []))
+        extrai_icones_do_perfil(pg, api.get("equipment", []), pasta)
 
         print(f"[web] esperando {ESPERA_MODELO_S}s o modelo renderizar...")
         pg.wait_for_timeout(ESPERA_MODELO_S * 1000)
