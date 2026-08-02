@@ -1,0 +1,112 @@
+[
+  {
+    "ordem": 0,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_18.jpg",
+    "x": 228,
+    "y": 868,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 3,
+    "tooltip": "Daylight Cloak\nBinds when picked up\n\nBack\tCloth\n5 Armor\nItem Level 5\n\nSell Price: 7",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20991\" rel=\"item=20991\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_18.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 1,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_chest_cloth_24.jpg",
+    "x": 228,
+    "y": 923,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 4,
+    "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=23367\" rel=\"item=23367\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_chest_cloth_24.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-1\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 2,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_shirt_01.jpg",
+    "x": 228,
+    "y": 978,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 5,
+    "tooltip": "Apprentice's Shirt\n\nShirt\t\nSell Price: 1",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=6096\" rel=\"item=6096\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_shirt_01.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-2\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 3,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_bracer_08.jpg",
+    "x": 228,
+    "y": 1088,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 7,
+    "tooltip": "Barbaric Cloth Bracers\n\nWrist\tCloth\n9 Armor\nDurability 16 / 16\nRequires Level 7\nItem Level 12\n\nSell Price: 47",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=3644\" rel=\"item=3644\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_bracer_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-3\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 4,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_gauntlets_06.jpg",
+    "x": 618,
+    "y": 703,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 8,
+    "tooltip": "Well Watcher Gloves\nBinds when picked up\n\nHands\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20995\" rel=\"item=20995\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_gauntlets_06.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-4\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 5,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_belt_03.jpg",
+    "x": 618,
+    "y": 758,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 9,
+    "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20998\" rel=\"item=20998\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_belt_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-5\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 6,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_pants_12.jpg",
+    "x": 618,
+    "y": 813,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 10,
+    "tooltip": "Striding Pants\nBinds when picked up\n\nLegs\tCloth\n9 Armor\nDurability 30 / 30\nItem Level 5\n\nSell Price: 10",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=21001\" rel=\"item=21001\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_pants_12.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-6\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 7,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_boots_03.jpg",
+    "x": 618,
+    "y": 868,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 11,
+    "tooltip": "Satin Lined Boots\nBinds when picked up\n\nFeet\tCloth\n14 Armor\nDurability 25 / 25\nItem Level 11\n\nSell Price: 59",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=23267\" rel=\"item=23267\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_boots_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-7\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 8,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_staff_38.jpg",
+    "x": 368,
+    "y": 1156,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 16,
+    "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\tSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+    "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22959\" rel=\"item=22959\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_38.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-8\">\n                            </a>\n                        </div>"
+  },
+  {
+    "ordem": 9,
+    "src": "http://cdn.warmane.com/wotlk/icons/large/inv_staff_02.jpg",
+    "x": 478,
+    "y": 1156,
+    "w": 50,
+    "h": 50,
+    "slot_geo": 17,
+    "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\tSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
+    "html": "<div class=\"icon-quality icon-quality2\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22971\" rel=\"item=22971\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_02.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-9\">\n                            </a>\n                        </div>"
+  }
+]

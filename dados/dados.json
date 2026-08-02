@@ -6,7 +6,7 @@
   "raca": "Blood Elf",
   "classe": "Mage",
   "faccao": "Horde",
-  "online": true,
+  "online": false,
   "pontosConquista": "10",
   "abates": 0,
   "modeloFrames": [
@@ -26,73 +26,119 @@
   "equipamento": [
     {
       "slot": 0,
-      "nome": "Daylight Cloak",
-      "itemId": "20991",
-      "icone": "icones/inv_misc_cape_18.jpg",
-      "qualidade": null
+      "nome": null
     },
     {
       "slot": 1,
-      "nome": "Light Silk Robe",
-      "itemId": "23367",
-      "icone": "icones/inv_chest_cloth_24.jpg",
-      "qualidade": null
+      "nome": null
     },
     {
       "slot": 2,
+      "nome": null
+    },
+    {
+      "nome": "Daylight Cloak",
+      "itemId": "20991",
+      "qualidade": null,
+      "tooltip": "Daylight Cloak\nBinds when picked up\n\nBack\tCloth\n5 Armor\nItem Level 5\n\nSell Price: 7",
+      "slot": 3,
+      "icone": "icones/inv_misc_cape_18.jpg"
+    },
+    {
+      "nome": "Light Silk Robe",
+      "itemId": "23367",
+      "qualidade": null,
+      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+      "slot": 4,
+      "icone": "icones/inv_chest_cloth_24.jpg"
+    },
+    {
       "nome": "Apprentice's Shirt",
       "itemId": "6096",
-      "icone": "icones/inv_shirt_01.jpg",
-      "qualidade": null
-    },
-    {
-      "slot": 3,
-      "nome": "Barbaric Cloth Bracers",
-      "itemId": "3644",
-      "icone": "icones/inv_bracer_08.jpg",
-      "qualidade": null
-    },
-    {
-      "slot": 4,
-      "nome": "Well Watcher Gloves",
-      "itemId": "20995",
-      "icone": "icones/inv_gauntlets_06.jpg",
-      "qualidade": null
-    },
-    {
+      "qualidade": null,
+      "tooltip": "Apprentice's Shirt\n\nShirt\t\nSell Price: 1",
       "slot": 5,
-      "nome": "Wyrm Sash",
-      "itemId": "20998",
-      "icone": "icones/inv_belt_03.jpg",
-      "qualidade": null
+      "icone": "icones/inv_shirt_01.jpg"
     },
     {
       "slot": 6,
+      "nome": null
+    },
+    {
+      "nome": "Barbaric Cloth Bracers",
+      "itemId": "3644",
+      "qualidade": null,
+      "tooltip": "Barbaric Cloth Bracers\n\nWrist\tCloth\n9 Armor\nDurability 16 / 16\nRequires Level 7\nItem Level 12\n\nSell Price: 47",
+      "slot": 7,
+      "icone": "icones/inv_bracer_08.jpg"
+    },
+    {
+      "nome": "Well Watcher Gloves",
+      "itemId": "20995",
+      "qualidade": null,
+      "tooltip": "Well Watcher Gloves\nBinds when picked up\n\nHands\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+      "slot": 8,
+      "icone": "icones/inv_gauntlets_06.jpg"
+    },
+    {
+      "nome": "Wyrm Sash",
+      "itemId": "20998",
+      "qualidade": null,
+      "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+      "slot": 9,
+      "icone": "icones/inv_belt_03.jpg"
+    },
+    {
       "nome": "Striding Pants",
       "itemId": "21001",
-      "icone": "icones/inv_pants_12.jpg",
-      "qualidade": null
+      "qualidade": null,
+      "tooltip": "Striding Pants\nBinds when picked up\n\nLegs\tCloth\n9 Armor\nDurability 30 / 30\nItem Level 5\n\nSell Price: 10",
+      "slot": 10,
+      "icone": "icones/inv_pants_12.jpg"
     },
     {
-      "slot": 7,
       "nome": "Satin Lined Boots",
       "itemId": "23267",
-      "icone": "icones/inv_boots_03.jpg",
-      "qualidade": null
+      "qualidade": null,
+      "tooltip": "Satin Lined Boots\nBinds when picked up\n\nFeet\tCloth\n14 Armor\nDurability 25 / 25\nItem Level 11\n\nSell Price: 59",
+      "slot": 11,
+      "icone": "icones/inv_boots_03.jpg"
     },
     {
-      "slot": 8,
+      "slot": 12,
+      "nome": null
+    },
+    {
+      "slot": 13,
+      "nome": null
+    },
+    {
+      "slot": 14,
+      "nome": null
+    },
+    {
+      "slot": 15,
+      "nome": null
+    },
+    {
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
-      "icone": "icones/inv_staff_38.jpg",
-      "qualidade": null
+      "qualidade": null,
+      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\tSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+      "slot": 16,
+      "icone": "icones/inv_staff_38.jpg"
     },
     {
-      "slot": 9,
+      "slot": 17,
+      "nome": null
+    },
+    {
       "nome": "Hoodoo Wand",
       "itemId": "22971",
-      "icone": "icones/inv_staff_02.jpg",
-      "qualidade": null
+      "qualidade": null,
+      "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\tSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
+      "slot": 18,
+      "icone": "icones/inv_staff_02.jpg"
     }
   ],
   "stats": {
@@ -105,5 +151,6 @@
     "spirit": "43",
     "armor": "139"
   },
-  "atualizadoEm": "02/08 00:53"
+  "versao": "1785635274",
+  "atualizadoEm": "02/08 01:47"
 }
