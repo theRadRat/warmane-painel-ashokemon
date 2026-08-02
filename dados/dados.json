@@ -1,10 +1,10 @@
 {
-  "nome": "Yananana",
+  "nome": "Ashokemon",
   "realm": "Icecrown",
   "guilda": "Wrathborns",
   "nivel": "17",
   "raca": "Blood Elf",
-  "classe": "Mage",
+  "classe": "Warlock",
   "faccao": "Horde",
   "online": false,
   "pontosConquista": "10",
@@ -37,12 +37,12 @@
       "nome": null
     },
     {
-      "nome": "Daylight Cloak",
-      "itemId": "20991",
+      "nome": "Worn Cloak",
+      "itemId": "1733",
       "qualidade": null,
-      "tooltip": "Daylight Cloak\nBinds when picked up\n\nBack\tCloth\n5 Armor\nItem Level 5\n\nSell Price: 7",
+      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
       "slot": 3,
-      "icone": "icones/inv_misc_cape_18.jpg"
+      "icone": "icones/inv_misc_cape_08.jpg"
     },
     {
       "nome": "Light Silk Robe",
@@ -53,10 +53,10 @@
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
     {
-      "nome": "Apprentice's Shirt",
-      "itemId": "6096",
+      "nome": "Acolyte's Shirt",
+      "itemId": "6097",
       "qualidade": null,
-      "tooltip": "Apprentice's Shirt\n\nShirt\t\nSell Price: 1",
+      "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
       "slot": 5,
       "icone": "icones/inv_shirt_01.jpg"
     },
@@ -65,20 +65,20 @@
       "nome": null
     },
     {
-      "nome": "Barbaric Cloth Bracers",
-      "itemId": "3644",
+      "nome": "Sunrise Bracers",
+      "itemId": "20992",
       "qualidade": null,
-      "tooltip": "Barbaric Cloth Bracers\n\nWrist\tCloth\n9 Armor\nDurability 16 / 16\nRequires Level 7\nItem Level 12\n\nSell Price: 47",
+      "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
       "slot": 7,
-      "icone": "icones/inv_bracer_08.jpg"
+      "icone": "icones/inv_bracer_12.jpg"
     },
     {
-      "nome": "Well Watcher Gloves",
-      "itemId": "20995",
+      "nome": "Calico Gloves",
+      "itemId": "1498",
       "qualidade": null,
-      "tooltip": "Well Watcher Gloves\nBinds when picked up\n\nHands\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+      "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
       "slot": 8,
-      "icone": "icones/inv_gauntlets_06.jpg"
+      "icone": "icones/inv_gauntlets_18.jpg"
     },
     {
       "nome": "Wyrm Sash",
@@ -146,11 +146,11 @@
     "spellHit": "0%",
     "spellCrit": "0%",
     "haste": "0%",
-    "intellect": "50",
-    "stamina": "24",
-    "spirit": "43",
-    "armor": "139"
+    "intellect": "46",
+    "stamina": "30",
+    "spirit": "41",
+    "armor": "128"
   },
-  "versao": "1785643719",
-  "atualizadoEm": "02/08 04:08"
+  "versao": "1785647019",
+  "atualizadoEm": "02/08 05:03"
 }
