@@ -6,7 +6,7 @@
   "raca": "Blood Elf",
   "classe": "Mage",
   "faccao": "Horde",
-  "online": false,
+  "online": true,
   "pontosConquista": "10",
   "abates": 0,
   "modeloFrames": [
@@ -105,5 +105,5 @@
     "spirit": "43",
     "armor": "139"
   },
-  "atualizadoEm": "02/08 00:44"
+  "atualizadoEm": "02/08 00:53"
 }
