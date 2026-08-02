@@ -1,10 +1,10 @@
 {
-  "nome": "Ashokemon",
+  "nome": "Yananana",
   "realm": "Icecrown",
   "guilda": "Wrathborns",
   "nivel": "17",
   "raca": "Blood Elf",
-  "classe": "Warlock",
+  "classe": "Mage",
   "faccao": "Horde",
   "online": false,
   "pontosConquista": "10",
@@ -26,9 +26,9 @@
   "equipamento": [
     {
       "slot": 0,
-      "nome": "Worn Cloak",
-      "itemId": "1733",
-      "icone": "icones/inv_misc_cape_08.jpg",
+      "nome": "Daylight Cloak",
+      "itemId": "20991",
+      "icone": "icones/inv_misc_cape_18.jpg",
       "qualidade": null
     },
     {
@@ -40,23 +40,23 @@
     },
     {
       "slot": 2,
-      "nome": "Acolyte's Shirt",
-      "itemId": "6097",
+      "nome": "Apprentice's Shirt",
+      "itemId": "6096",
       "icone": "icones/inv_shirt_01.jpg",
       "qualidade": null
     },
     {
       "slot": 3,
-      "nome": "Sunrise Bracers",
-      "itemId": "20992",
-      "icone": "icones/inv_bracer_12.jpg",
+      "nome": "Barbaric Cloth Bracers",
+      "itemId": "3644",
+      "icone": "icones/inv_bracer_08.jpg",
       "qualidade": null
     },
     {
       "slot": 4,
-      "nome": "Calico Gloves",
-      "itemId": "1498",
-      "icone": "icones/inv_gauntlets_18.jpg",
+      "nome": "Well Watcher Gloves",
+      "itemId": "20995",
+      "icone": "icones/inv_gauntlets_06.jpg",
       "qualidade": null
     },
     {
@@ -100,10 +100,10 @@
     "spellHit": "0%",
     "spellCrit": "0%",
     "haste": "0%",
-    "intellect": "46",
-    "stamina": "30",
-    "spirit": "41",
-    "armor": "128"
+    "intellect": "50",
+    "stamina": "24",
+    "spirit": "43",
+    "armor": "139"
   },
-  "atualizadoEm": "02/08 00:30"
+  "atualizadoEm": "02/08 00:44"
 }
