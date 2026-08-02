@@ -141,47 +141,166 @@ def busca_api_via_navegador(pg, nome, realm):
 #    página e casa, uma por uma, com os slots que a API disse ter
 #    item — sem precisar saber o nome de nenhuma classe CSS.
 # ------------------------------------------------------------------
+# Palavras que aparecem na tooltip indicando o slot do item, na ordem
+# dos 19 espaços da ficha de personagem.
+SLOT_POR_TEXTO = [
+    (0,  ["head"]),
+    (1,  ["neck"]),
+    (2,  ["shoulder"]),
+    (3,  ["back"]),
+    (4,  ["chest", "robe"]),
+    (5,  ["shirt"]),
+    (6,  ["tabard"]),
+    (7,  ["wrist"]),
+    (8,  ["hands"]),
+    (9,  ["waist"]),
+    (10, ["legs"]),
+    (11, ["feet"]),
+    (12, ["finger"]),
+    (14, ["trinket"]),
+    (16, ["two-hand", "main hand", "one-hand"]),
+    (17, ["off hand", "held in off-hand", "off-hand", "shield"]),
+    (18, ["ranged", "relic", "thrown", "wand", "bow", "gun", "crossbow",
+          "idol", "libram", "totem", "sigil"]),
+]
+
+
+def slot_pela_tooltip(texto, ocupados):
+    """Descobre em qual dos 19 espaços o item entra, lendo a tooltip.
+
+    Isso resolve um problema real: a API do Warmane devolve só os itens
+    equipados, em sequência, sem dizer a que slot cada um pertence. Sem
+    isso, um personagem com espaços vazios no meio fica com tudo
+    deslocado (a varinha aparecendo na cintura, por exemplo).
+    """
+    if not texto:
+        return None
+    baixo = texto.lower()
+
+    for base, palavras in SLOT_POR_TEXTO:
+        if not any(pal in baixo for pal in palavras):
+            continue
+        # Anel e berloque têm dois espaços cada: usa o primeiro livre.
+        if base in (12, 14):
+            for cand in (base, base + 1):
+                if cand not in ocupados:
+                    return cand
+            return None
+        if base not in ocupados:
+            return base
+    return None
+
+
+def captura_tooltips(pg, imgs_info):
+    """Passa o mouse em cada ícone da página e lê a tooltip que aparece.
+
+    Ler a tooltip da própria Armory é mais confiável do que consultar
+    um banco externo: o servidor é privado e pode ter itens que não
+    existem no banco do jogo oficial.
+    """
+    print("[web] lendo tooltips dos itens...")
+    lidas = 0
+
+    for info in imgs_info:
+        info["tooltip"] = None
+        seletor = info.get("seletor")
+        if not seletor:
+            continue
+        try:
+            pg.hover(seletor, timeout=3000)
+            pg.wait_for_timeout(320)
+            texto = pg.evaluate("""() => {
+                // A tooltip é o elemento flutuante visível que apareceu
+                // por cima da página. Procuramos o menor candidato, que
+                // é o mais específico (evita pegar um container inteiro).
+                const cands = [...document.querySelectorAll('div, table')]
+                  .filter(e => {
+                    const cs = getComputedStyle(e);
+                    if (cs.display === 'none' || cs.visibility === 'hidden') return false;
+                    if (cs.position !== 'absolute' && cs.position !== 'fixed') return false;
+                    const r = e.getBoundingClientRect();
+                    if (r.width < 60 || r.height < 30) return false;
+                    if (r.width > 600 || r.height > 700) return false;
+                    const t = (e.innerText || '').trim();
+                    return t.length > 10 && t.length < 1200;
+                  });
+                if (!cands.length) return null;
+                cands.sort((a, b) => {
+                  const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+                  return (ra.width * ra.height) - (rb.width * rb.height);
+                });
+                return cands[0].innerText.trim();
+            }""")
+            if texto:
+                info["tooltip"] = texto
+                lidas += 1
+        except Exception:
+            pass
+
+    # Tira o mouse de cima pra tooltip não sobrar no screenshot do modelo.
+    try:
+        pg.mouse.move(5, 5)
+        pg.wait_for_timeout(200)
+    except Exception:
+        pass
+
+    print(f"[web] tooltips lidas: {lidas}/{len(imgs_info)}")
+    return lidas
+
+
 def extrai_icones_do_perfil(pg, equipamento_api):
-    """Preenche 'icone_url' (e 'qualidade', quando possível) em cada
-    item de equipamento_api, direto do HTML já carregado em pg."""
+    """Preenche 'icone_url', 'tooltip' e 'slot_real' em cada item de
+    equipamento_api, direto do HTML já carregado em pg."""
     try:
         infos = pg.eval_on_selector_all(
             'img[src*="/icons/large/"]',
-            """els => els.map(e => {
+            """els => els.map((e, i) => {
+                e.setAttribute('data-cap', 'icone-' + i);
                 const a = e.closest('a');
                 let q = null;
                 if (a) {
-                    // tentativa best-effort: várias armorys de servidor
-                    // privado marcam a raridade com uma classe tipo q0..q7,
-                    // igual o próprio Wowhead. Se não achar, fica sem cor
-                    // (o painel já tem fallback pra isso).
                     const m = (a.className || '').match(/\\bq([0-7])\\b/);
                     if (m) q = parseInt(m[1]);
                 }
-                return { src: e.getAttribute('src'), qualidade: q };
+                return {
+                    src: e.getAttribute('src'),
+                    qualidade: q,
+                    seletor: '[data-cap="icone-' + i + '"]'
+                };
             })"""
         )
     except Exception as e:
         print(f"[aviso] não consegui ler os ícones da página de perfil: {e}")
         infos = []
 
+    if infos:
+        captura_tooltips(pg, infos)
+
     fila = list(infos)
     achados = 0
+    ocupados = set()
+
     for item in equipamento_api:
-        if item.get("name") and fila:
-            info = fila.pop(0)
-            item["icone_url"] = info["src"]
-            if info["qualidade"] is not None:
-                item["qualidade"] = info["qualidade"]
-            achados += 1
+        if not item.get("name") or not fila:
+            continue
+        info = fila.pop(0)
+        item["icone_url"] = info["src"]
+        item["tooltip"] = info.get("tooltip")
+        if info["qualidade"] is not None:
+            item["qualidade"] = info["qualidade"]
+
+        slot = slot_pela_tooltip(info.get("tooltip"), ocupados)
+        if slot is not None:
+            ocupados.add(slot)
+            item["slot_real"] = slot
+        achados += 1
 
     equipados = sum(1 for it in equipamento_api if it.get("name"))
-    print(f"[web] ícones casados com item equipado: {achados}/{equipados}")
-    if achados < equipados:
-        print(
-            "  [aviso] sobrou item sem ícone — a ordem dos <img> na página\n"
-            "  pode ter mudado. Reporta isso se acontecer, dá pra ajustar."
-        )
+    com_slot = sum(1 for it in equipamento_api if it.get("slot_real") is not None)
+    print(f"[web] ícones casados: {achados}/{equipados} | slot identificado: {com_slot}/{equipados}")
+    if com_slot < equipados:
+        print("  [aviso] alguns itens ficaram sem slot identificado — eles vão "
+              "cair nos espaços livres, em ordem.")
 
 
 def baixa_icone_url(url, pasta):
@@ -427,6 +546,14 @@ def gira_e_captura(pg, canvas, pasta, frames, giro_manual=None):
     arquivos = []
     print(f"[web] capturando {frames} frame(s)...")
 
+    # Limpa frames de execuções anteriores. Sem isso, trocar pra um
+    # personagem com menos frames deixaria arquivos órfãos na pasta.
+    for antigo in pasta.glob("modelo_*.png"):
+        try:
+            antigo.unlink()
+        except Exception:
+            pass
+
     for i in range(frames):
         nome_arq = f"modelo_{i:02d}.png"
         try:
@@ -468,20 +595,42 @@ def main():
     )
 
     print("[itens] baixando ícones da Armory...")
-    equipamento = []
-    for idx, item in enumerate(api.get("equipment", [])):
+
+    # Primeiro os que sabem o próprio slot; depois os indefinidos vão
+    # preenchendo os espaços que sobraram, em ordem.
+    equipamento = [{"slot": i, "nome": None} for i in range(19)]
+    sem_slot = []
+
+    for item in api.get("equipment", []):
         nome_item = item.get("name")
         if not nome_item:
-            equipamento.append({"slot": idx, "nome": None})
             continue
-        arquivo_icone = baixa_icone_url(item.get("icone_url"), pasta_icones)
-        equipamento.append({
-            "slot": idx,
+        registro = {
             "nome": nome_item,
             "itemId": item.get("item"),
-            "icone": f"icones/{arquivo_icone}" if arquivo_icone else "",
+            "icone_url": item.get("icone_url"),
             "qualidade": item.get("qualidade"),
-        })
+            "tooltip": item.get("tooltip"),
+        }
+        slot = item.get("slot_real")
+        if slot is not None and 0 <= slot < 19 and equipamento[slot]["nome"] is None:
+            registro["slot"] = slot
+            equipamento[slot] = registro
+        else:
+            sem_slot.append(registro)
+
+    for registro in sem_slot:
+        for i in range(19):
+            if equipamento[i]["nome"] is None:
+                registro["slot"] = i
+                equipamento[i] = registro
+                break
+
+    for registro in equipamento:
+        if registro.get("nome") is None:
+            continue
+        arquivo_icone = baixa_icone_url(registro.pop("icone_url", None), pasta_icones)
+        registro["icone"] = f"icones/{arquivo_icone}" if arquivo_icone else ""
 
     dados = {
         "nome":   api.get("name"),
@@ -497,6 +646,11 @@ def main():
         "modeloFrames": frames,
         "equipamento": equipamento,
         "stats": stats,
+        # Muda a cada execução. O painel pendura isso na URL das imagens
+        # do modelo pra furar o cache: os arquivos têm sempre o mesmo
+        # nome (modelo_00.png...), então sem isso o navegador continuaria
+        # mostrando o modelo do personagem anterior.
+        "versao": str(int(time.time())),
         "atualizadoEm": time.strftime("%d/%m %H:%M"),
     }
 
