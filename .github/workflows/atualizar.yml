@@ -2,7 +2,11 @@ name: Atualizar painel do personagem
 
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    # 5 minutos é o intervalo mais curto que o GitHub honra de forma
+    # confiável. Abaixo disso ele engavetа execuções, e com o job
+    # levando ~1min elas passam a se atropelar — que foi o que causou
+    # os erros de "failed to push / fetch first".
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -10,7 +14,9 @@ permissions:
 
 concurrency:
   group: atualizar-painel
-  cancel-in-progress: false
+  # Se uma execução nova chegar enquanto outra roda, cancela a antiga:
+  # ela ficaria publicando dados já desatualizados de qualquer jeito.
+  cancel-in-progress: true
 
 jobs:
   atualizar:
@@ -59,12 +65,41 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add dados/
+          # A pasta dados/ é inteiramente gerada por este workflow, então
+          # a versão recém-criada é sempre a correta. Em vez de tentar
+          # mesclar (o que daria conflito em PNG binário), reconstruímos
+          # o commit em cima da ponta atual do remoto:
+          #
+          #   fetch          -> descobre onde o remoto está agora
+          #   reset --soft   -> move o HEAD pra lá SEM tocar nos arquivos
+          #   commit         -> nasce já em cima da base certa
+          #
+          # Assim nunca há "fetch first": o commit é criado depois de
+          # sabermos qual é a ponta, não antes.
+          for tentativa in 1 2 3; do
+            git fetch origin "${GITHUB_REF_NAME}"
+            git reset --soft "origin/${GITHUB_REF_NAME}"
 
-          if git diff --staged --quiet; then
-            echo "Nada mudou desde a última execução."
-          else
-            git commit -m "atualiza personagem — $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git push
-            echo "Dados atualizados e publicados."
-          fi
+            git add dados/
+
+            if git diff --staged --quiet; then
+              echo "Nada mudou desde a última execução."
+              exit 0
+            fi
+
+            git commit -q -m "atualiza personagem — $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "Dados atualizados e publicados."
+              exit 0
+            fi
+
+            echo "Push recusado (outra execução publicou antes). Tentativa $tentativa de 3."
+            # Desfaz o commit local mantendo os arquivos, pra refazer
+            # sobre a nova ponta na próxima volta do laço.
+            git reset --soft HEAD~1
+            sleep 3
+          done
+
+          echo "Não consegui publicar após 3 tentativas."
+          exit 1
