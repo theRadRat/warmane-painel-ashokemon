@@ -73,6 +73,8 @@ URL_API    = "https://armory.warmane.com/api/character/{nome}/{realm}/summary"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
 ESPERA_MODELO_S = 9         # tempo pro WebGL carregar o modelo
+TOLERANCIA_FUNDO = 8        # quão parecido com o fundo pra virar transparente
+                            # (ver --tolerancia-fundo no --help pra ajustar)
 
 
 # ------------------------------------------------------------------
@@ -500,7 +502,7 @@ def extrai_stats(texto):
     }
 
 
-def captura_tudo_via_navegador(nome, realm, pasta, frames, debug, giro_manual=None):
+def captura_tudo_via_navegador(nome, realm, pasta, frames, debug, giro_manual=None, tolerancia_fundo=TOLERANCIA_FUNDO):
     """Abre o Chromium uma única vez e faz nele as três coisas que
     dependem da Armory: buscar a API, ler os atributos, e capturar o
     modelo. Um navegador só, reaproveitado — mais rápido e evita abrir
@@ -540,7 +542,7 @@ def captura_tudo_via_navegador(nome, realm, pasta, frames, debug, giro_manual=No
         if not canvas:
             print("[aviso] não achei o canvas do modelo — o painel vai ficar sem imagem.")
         else:
-            arquivos = gira_e_captura(pg, canvas, pasta, frames, giro_manual)
+            arquivos = gira_e_captura(pg, canvas, pasta, frames, giro_manual, tolerancia_fundo)
 
         nav.close()
 
@@ -560,6 +562,57 @@ def maior_canvas(pg):
     if area_melhor < 10000:
         return None
     return melhor
+
+
+# ------------------------------------------------------------------
+# Remoção de fundo dos frames do modelo
+#
+# Por quê: o navegador tira o screenshot de um <canvas> WebGL, e esse
+# canvas limpa com uma cor sólida (alpha=1) antes de desenhar — quase
+# todo visualizador 3D faz isso. Resultado: o PNG capturado NUNCA é
+# transparente, mesmo que pareça "vazio" ao redor do personagem. Sem
+# tratar isso, o CSS do painel desenha uma sombra (drop-shadow) em
+# volta desse retângulo sólido — é o "quadro com sombra" que aparece
+# ao redor do modelo.
+#
+# Como resolve: acha a cor do fundo pelos 4 cantos da imagem (onde tem
+# certeza que não há personagem) e apaga, por flood-fill, só os
+# pixels CONECTADOS a esses cantos com cor parecida. Isso preserva
+# partes escuras do personagem (armadura preta, cabelo escuro) que
+# não tocam a borda da imagem — só o que está grudado no fundo some.
+# ------------------------------------------------------------------
+def remove_fundo(caminho_png, tolerancia=TOLERANCIA_FUNDO):
+    """Torna transparente o fundo sólido de um frame capturado do canvas.
+    Sobrescreve o próprio arquivo."""
+    from PIL import Image, ImageDraw
+    import numpy as np
+
+    im = Image.open(caminho_png).convert("RGB")
+    a = np.array(im).astype(int)
+    h, w = a.shape[:2]
+
+    cantos = np.concatenate([
+        a[0:4, 0:4].reshape(-1, 3), a[0:4, -4:].reshape(-1, 3),
+        a[-4:, 0:4].reshape(-1, 3), a[-4:, -4:].reshape(-1, 3),
+    ])
+    bg = tuple(int(v) for v in np.median(cantos, axis=0))
+
+    # floodfill do Pillow só funciona de forma confiável em modo RGB
+    # (em "L" ele não substitui nada, testado e confirmado). Por isso
+    # usamos uma cor-sentinela improvável em vez de comparar direto.
+    trabalho = im.copy()
+    MARCA = (1, 2, 3)
+    for x, y in [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]:
+        if trabalho.getpixel((x, y)) != MARCA:
+            ImageDraw.floodfill(trabalho, (x, y), MARCA, thresh=tolerancia)
+
+    tb = np.array(trabalho)
+    e_fundo = np.all(tb == np.array(MARCA), axis=2)
+    alpha = np.where(e_fundo, 0, 255).astype("uint8")
+
+    rgba = np.dstack([a.astype("uint8"), alpha])
+    Image.fromarray(rgba, "RGBA").save(caminho_png)
+    return bg, int(e_fundo.sum()), int(e_fundo.size)
 
 
 def _miniatura(img_bytes):
@@ -654,7 +707,7 @@ def calibra_volta_completa(pg, canvas, cx, cy, largura):
     return total
 
 
-def gira_e_captura(pg, canvas, pasta, frames, giro_manual=None):
+def gira_e_captura(pg, canvas, pasta, frames, giro_manual=None, tolerancia_fundo=TOLERANCIA_FUNDO):
     """Gira o personagem e fotografa em N poses igualmente espaçadas,
     fechando o loop direitinho (último frame encosta no primeiro)."""
     box = canvas.bounding_box()
@@ -692,6 +745,11 @@ def gira_e_captura(pg, canvas, pasta, frames, giro_manual=None):
         nome_arq = f"modelo_{i:02d}.png"
         try:
             canvas.screenshot(path=str(pasta / nome_arq))
+            if tolerancia_fundo:
+                try:
+                    remove_fundo(pasta / nome_arq, tolerancia_fundo)
+                except Exception as e:
+                    print(f"  [aviso] não consegui remover o fundo do frame {i}: {e}")
             arquivos.append(nome_arq)
         except Exception as e:
             print(f"  [aviso] frame {i} falhou: {e}")
@@ -717,6 +775,13 @@ def main():
                     help="pula a calibração e usa este multiplicador da largura "
                          "do modelo como uma volta completa (ex: 1.2)")
     ap.add_argument("--debug",  action="store_true", help="abre o navegador visível")
+    ap.add_argument("--tolerancia-fundo", type=int, default=TOLERANCIA_FUNDO,
+                    help=f"quão parecido com o fundo um pixel precisa ser pra "
+                         f"virar transparente (padrão {TOLERANCIA_FUNDO}). Suba se "
+                         f"sobrar fundo visível nas bordas do modelo; desça se "
+                         f"partes escuras do personagem estiverem sumindo")
+    ap.add_argument("--sem-remover-fundo", action="store_true",
+                    help="desliga a remoção de fundo, deixa o frame como veio do canvas")
     args = ap.parse_args()
 
     pasta = Path(args.saida)
@@ -724,8 +789,9 @@ def main():
     pasta.mkdir(parents=True, exist_ok=True)
     pasta_icones.mkdir(parents=True, exist_ok=True)
 
+    tolerancia_fundo = 0 if args.sem_remover_fundo else args.tolerancia_fundo
     api, stats, frames = captura_tudo_via_navegador(
-        args.nome, args.realm, pasta, args.frames, args.debug, args.giro
+        args.nome, args.realm, pasta, args.frames, args.debug, args.giro, tolerancia_fundo
     )
 
     print("[itens] baixando ícones da Armory...")
