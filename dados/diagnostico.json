@@ -106,7 +106,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 17,
-    "tooltip": "",
+    "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\tSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
     "html": "<div class=\"icon-quality icon-quality2\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22971\" rel=\"item=22971\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_02.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-9\">\n                            </a>\n                        </div>"
   }
 ]

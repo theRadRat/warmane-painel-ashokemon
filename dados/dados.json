@@ -129,16 +129,16 @@
       "icone": "icones/inv_staff_38.jpg"
     },
     {
+      "slot": 17,
+      "nome": null
+    },
+    {
       "nome": "Hoodoo Wand",
       "itemId": "22971",
       "qualidade": null,
-      "tooltip": null,
-      "slot": 17,
-      "icone": "icones/inv_staff_02.jpg"
-    },
-    {
+      "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\tSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
       "slot": 18,
-      "nome": null
+      "icone": "icones/inv_staff_02.jpg"
     }
   ],
   "stats": {
@@ -151,6 +151,6 @@
     "spirit": "41",
     "armor": "128"
   },
-  "versao": "1785787429",
-  "atualizadoEm": "03/08 20:03"
+  "versao": "1785791998",
+  "atualizadoEm": "03/08 21:19"
 }
