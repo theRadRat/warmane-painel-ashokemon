@@ -6,7 +6,7 @@
   "raca": "Blood Elf",
   "classe": "Warlock",
   "faccao": "Horde",
-  "online": false,
+  "online": true,
   "pontosConquista": "10",
   "abates": 0,
   "modeloFrames": [
@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "41",
     "armor": "128"
   },
-  "versao": "1785800719",
-  "atualizadoEm": "03/08 23:45"
+  "versao": "1785805930",
+  "atualizadoEm": "04/08 01:12"
 }
