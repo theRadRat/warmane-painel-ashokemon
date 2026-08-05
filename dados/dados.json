@@ -2,11 +2,11 @@
   "nome": "Ashokemon",
   "realm": "Icecrown",
   "guilda": "Wrathborns",
-  "nivel": "17",
+  "nivel": "18",
   "raca": "Blood Elf",
   "classe": "Warlock",
   "faccao": "Horde",
-  "online": true,
+  "online": false,
   "pontosConquista": "10",
   "abates": 0,
   "modeloFrames": [
@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Item not found",
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -146,11 +146,11 @@
     "spellHit": "0%",
     "spellCrit": "0%",
     "haste": "0%",
-    "intellect": "46",
-    "stamina": "33",
-    "spirit": "41",
-    "armor": "128"
+    "intellect": "11",
+    "stamina": "7",
+    "spirit": "10",
+    "armor": "86"
   },
-  "versao": "1785895035",
-  "atualizadoEm": "05/08 01:57"
+  "versao": "1785907389",
+  "atualizadoEm": "05/08 05:23"
 }
