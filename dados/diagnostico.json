@@ -7,7 +7,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 3,
-    "tooltip": "",
+    "tooltip": "Item not found",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1733\" rel=\"item=1733\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
   },
   {
@@ -73,7 +73,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 10,
-    "tooltip": "Striding Pants\nBinds when picked up\n\nLegs\tCloth\n9 Armor\nDurability 30 / 30\nItem Level 5\n\nSell Price: 10",
+    "tooltip": "Item not found",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=21001\" rel=\"item=21001\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_pants_12.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-6\">\n                            </a>\n                        </div>"
   },
   {
