@@ -68,7 +68,7 @@
       "nome": "Sunrise Bracers",
       "itemId": "20992",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
       "slot": 7,
       "icone": "icones/inv_bracer_12.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786101267",
-  "atualizadoEm": "07/08 11:14"
+  "versao": "1786104151",
+  "atualizadoEm": "07/08 12:02"
 }
