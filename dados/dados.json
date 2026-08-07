@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+      "tooltip": null,
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -56,7 +56,7 @@
       "nome": "Acolyte's Shirt",
       "itemId": "6097",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
       "slot": 5,
       "icone": "icones/inv_shirt_01.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786062165",
-  "atualizadoEm": "07/08 00:22"
+  "versao": "1786073225",
+  "atualizadoEm": "07/08 03:27"
 }
