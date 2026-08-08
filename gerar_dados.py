@@ -193,6 +193,22 @@ def slot_pela_tooltip(texto, ocupados):
     return None
 
 
+def normaliza_tooltip(texto):
+    """Corrige quebras de linha que a Armory não insere.
+
+    "Damage" e "Speed" são desenhados como duas colunas lado a lado na
+    mesma linha visual (provavelmente dois <span> sem quebra de linha
+    real entre eles no HTML). innerText só quebra linha em elementos
+    de bloco, então o texto capturado vem tudo grudado, tipo:
+    "9 - 17 Damage Speed 1.60" numa linha só. Isso força a quebra de
+    volta pro lugar certo.
+    """
+    if not texto:
+        return texto
+    texto = re.sub(r"\bDamage\s+(Speed\s)", r"Damage\n\1", texto)
+    return texto
+
+
 def captura_tooltips(pg, imgs_info):
     """Passa o mouse em cada ícone da página e lê a tooltip que aparece.
 
@@ -234,7 +250,7 @@ def captura_tooltips(pg, imgs_info):
                 return cands[0].innerText.trim();
             }""")
             if texto:
-                info["tooltip"] = texto
+                info["tooltip"] = normaliza_tooltip(texto)
                 lidas += 1
         except Exception:
             pass
@@ -581,58 +597,38 @@ def maior_canvas(pg):
 # partes escuras do personagem (armadura preta, cabelo escuro) que
 # não tocam a borda da imagem — só o que está grudado no fundo some.
 # ------------------------------------------------------------------
-# ------------------------------------------------------------------
-# Remoção de fundo dos frames do modelo
-# ------------------------------------------------------------------
 def remove_fundo(caminho_png, tolerancia=TOLERANCIA_FUNDO):
     """Torna transparente o fundo sólido de um frame capturado do canvas.
-    Sobrescreve o próprio arquivo. Reescrevido para usar Pillow puro."""
+    Sobrescreve o próprio arquivo."""
     from PIL import Image, ImageDraw
+    import numpy as np
 
     im = Image.open(caminho_png).convert("RGB")
-    w, h = im.size
+    a = np.array(im).astype(int)
+    h, w = a.shape[:2]
 
-    # Pega as cores dos 4 cantos para estimar o fundo
-    cantos = [
-        im.getpixel((0, 0)),
-        im.getpixel((w - 1, 0)),
-        im.getpixel((0, h - 1)),
-        im.getpixel((w - 1, h - 1))
-    ]
-    # bg = cor mais frequente nos cantos
-    bg = max(set(cantos), key=cantos.count)
+    cantos = np.concatenate([
+        a[0:4, 0:4].reshape(-1, 3), a[0:4, -4:].reshape(-1, 3),
+        a[-4:, 0:4].reshape(-1, 3), a[-4:, -4:].reshape(-1, 3),
+    ])
+    bg = tuple(int(v) for v in np.median(cantos, axis=0))
 
+    # floodfill do Pillow só funciona de forma confiável em modo RGB
+    # (em "L" ele não substitui nada, testado e confirmado). Por isso
+    # usamos uma cor-sentinela improvável em vez de comparar direto.
     trabalho = im.copy()
-    
-    # Uma cor-sentinela berrante e improvável de existir no modelo real
-    MARCA = (255, 0, 255)
-
-    # Preenche o fundo com a cor MARCA a partir dos 4 cantos
+    MARCA = (1, 2, 3)
     for x, y in [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]:
         if trabalho.getpixel((x, y)) != MARCA:
             ImageDraw.floodfill(trabalho, (x, y), MARCA, thresh=tolerancia)
 
-    # Extrai os pixels
-    dados_rgb = im.getdata()
-    dados_trab = trabalho.getdata()
-    novos_dados = []
+    tb = np.array(trabalho)
+    e_fundo = np.all(tb == np.array(MARCA), axis=2)
+    alpha = np.where(e_fundo, 0, 255).astype("uint8")
 
-    removidos = 0
-    for pixel_orig, pixel_trab in zip(dados_rgb, dados_trab):
-        if pixel_trab == MARCA:
-            # Fundo: converte para alpha 0
-            novos_dados.append((pixel_orig[0], pixel_orig[1], pixel_orig[2], 0))
-            removidos += 1
-        else:
-            # Personagem: mantém opaco (alpha 255)
-            novos_dados.append((pixel_orig[0], pixel_orig[1], pixel_orig[2], 255))
-
-    # Cria imagem com transparência (RGBA)
-    im_rgba = Image.new("RGBA", im.size)
-    im_rgba.putdata(novos_dados)
-    im_rgba.save(caminho_png)
-
-    return bg, removidos, w * h
+    rgba = np.dstack([a.astype("uint8"), alpha])
+    Image.fromarray(rgba, "RGBA").save(caminho_png)
+    return bg, int(e_fundo.sum()), int(e_fundo.size)
 
 
 def _miniatura(img_bytes):
