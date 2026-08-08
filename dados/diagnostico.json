@@ -7,7 +7,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 3,
-    "tooltip": "",
+    "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1733\" rel=\"item=1733\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
   },
   {
@@ -95,7 +95,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 16,
-    "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\tSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+    "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22959\" rel=\"item=22959\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_38.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-8\">\n                            </a>\n                        </div>"
   },
   {
@@ -106,7 +106,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 17,
-    "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\tSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
+    "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\nSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
     "html": "<div class=\"icon-quality icon-quality2\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22971\" rel=\"item=22971\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_02.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-9\">\n                            </a>\n                        </div>"
   }
 ]

@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -124,7 +124,7 @@
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
       "qualidade": null,
-      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\tSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
       "slot": 16,
       "icone": "icones/inv_staff_38.jpg"
     },
@@ -136,7 +136,7 @@
       "nome": "Hoodoo Wand",
       "itemId": "22971",
       "qualidade": null,
-      "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\tSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
+      "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\nSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
       "slot": 18,
       "icone": "icones/inv_staff_02.jpg"
     }
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786226529",
-  "atualizadoEm": "08/08 22:02"
+  "versao": "1786227025",
+  "atualizadoEm": "08/08 22:10"
 }
