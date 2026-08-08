@@ -62,7 +62,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 9,
-    "tooltip": "",
+    "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20998\" rel=\"item=20998\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_belt_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-5\">\n                            </a>\n                        </div>"
   },
   {
