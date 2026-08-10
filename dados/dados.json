@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -56,7 +56,7 @@
       "nome": "Acolyte's Shirt",
       "itemId": "6097",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
       "slot": 5,
       "icone": "icones/inv_shirt_01.jpg"
     },
@@ -68,7 +68,7 @@
       "nome": "Sunrise Bracers",
       "itemId": "20992",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
       "slot": 7,
       "icone": "icones/inv_bracer_12.jpg"
     },
@@ -76,7 +76,7 @@
       "nome": "Calico Gloves",
       "itemId": "1498",
       "qualidade": null,
-      "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
+      "tooltip": null,
       "slot": 8,
       "icone": "icones/inv_gauntlets_18.jpg"
     },
@@ -124,7 +124,7 @@
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
       "qualidade": null,
-      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+      "tooltip": null,
       "slot": 16,
       "icone": "icones/inv_staff_38.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786398995",
-  "atualizadoEm": "10/08 21:56"
+  "versao": "1786401863",
+  "atualizadoEm": "10/08 22:44"
 }
