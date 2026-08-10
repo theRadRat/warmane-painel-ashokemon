@@ -84,7 +84,7 @@
       "nome": "Wyrm Sash",
       "itemId": "20998",
       "qualidade": null,
-      "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+      "tooltip": null,
       "slot": 9,
       "icone": "icones/inv_belt_03.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786392448",
-  "atualizadoEm": "10/08 20:07"
+  "versao": "1786395776",
+  "atualizadoEm": "10/08 21:02"
 }
