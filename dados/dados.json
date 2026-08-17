@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
+      "tooltip": null,
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+      "tooltip": null,
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786955266",
-  "atualizadoEm": "17/08 08:27"
+  "versao": "1786957982",
+  "atualizadoEm": "17/08 09:13"
 }
