@@ -56,7 +56,7 @@
       "nome": "Acolyte's Shirt",
       "itemId": "6097",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
       "slot": 5,
       "icone": "icones/inv_shirt_01.jpg"
     },
@@ -76,7 +76,7 @@
       "nome": "Calico Gloves",
       "itemId": "1498",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
       "slot": 8,
       "icone": "icones/inv_gauntlets_18.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1786999233",
-  "atualizadoEm": "17/08 20:40"
+  "versao": "1787000750",
+  "atualizadoEm": "17/08 21:05"
 }
