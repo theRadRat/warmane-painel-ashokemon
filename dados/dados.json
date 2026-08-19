@@ -124,7 +124,7 @@
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
       "qualidade": null,
-      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+      "tooltip": null,
       "slot": 16,
       "icone": "icones/inv_staff_38.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1787113282",
-  "atualizadoEm": "19/08 04:21"
+  "versao": "1787118227",
+  "atualizadoEm": "19/08 05:43"
 }
