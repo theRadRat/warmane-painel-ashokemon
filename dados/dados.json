@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
+      "tooltip": null,
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+      "tooltip": null,
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -124,7 +124,7 @@
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
       "qualidade": null,
-      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+      "tooltip": null,
       "slot": 16,
       "icone": "icones/inv_staff_38.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1787168985",
-  "atualizadoEm": "19/08 19:49"
+  "versao": "1787176007",
+  "atualizadoEm": "19/08 21:46"
 }

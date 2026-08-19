@@ -7,7 +7,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 3,
-    "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1733\" rel=\"item=1733\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
   },
   {
@@ -18,7 +18,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 4,
-    "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=23367\" rel=\"item=23367\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_chest_cloth_24.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-1\">\n                            </a>\n                        </div>"
   },
   {
@@ -95,7 +95,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 16,
-    "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22959\" rel=\"item=22959\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_38.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-8\">\n                            </a>\n                        </div>"
   },
   {
