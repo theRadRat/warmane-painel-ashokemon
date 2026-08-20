@@ -6,7 +6,7 @@
   "raca": "Blood Elf",
   "classe": "Warlock",
   "faccao": "Horde",
-  "online": true,
+  "online": false,
   "pontosConquista": "20",
   "abates": 0,
   "modeloFrames": [
@@ -151,6 +151,6 @@
     "spirit": "46",
     "armor": "132"
   },
-  "versao": "1787266265",
-  "atualizadoEm": "20/08 22:51"
+  "versao": "1787267929",
+  "atualizadoEm": "20/08 23:18"
 }
