@@ -18,7 +18,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 4,
-    "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=23367\" rel=\"item=23367\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_chest_cloth_24.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-1\">\n                            </a>\n                        </div>"
   },
   {
@@ -29,7 +29,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 5,
-    "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=6097\" rel=\"item=6097\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_shirt_01.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-2\">\n                            </a>\n                        </div>"
   },
   {
@@ -62,7 +62,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 9,
-    "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20998\" rel=\"item=20998\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_belt_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-5\">\n                            </a>\n                        </div>"
   },
   {
