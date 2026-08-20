@@ -7,7 +7,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 3,
-    "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1733\" rel=\"item=1733\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
   },
   {
@@ -29,7 +29,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 5,
-    "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=6097\" rel=\"item=6097\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_shirt_01.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-2\">\n                            </a>\n                        </div>"
   },
   {
