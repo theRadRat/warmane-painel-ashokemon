@@ -2,11 +2,11 @@
   "nome": "Ashokemon",
   "realm": "Icecrown",
   "guilda": "Wrathborns",
-  "nivel": "18",
+  "nivel": "19",
   "raca": "Blood Elf",
   "classe": "Warlock",
   "faccao": "Horde",
-  "online": false,
+  "online": true,
   "pontosConquista": "10",
   "abates": 0,
   "modeloFrames": [
@@ -151,6 +151,6 @@
     "spirit": "10",
     "armor": "86"
   },
-  "versao": "1787184154",
-  "atualizadoEm": "20/08 00:02"
+  "versao": "1787190580",
+  "atualizadoEm": "20/08 01:49"
 }
