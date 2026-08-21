@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -68,7 +68,7 @@
       "nome": "Sunrise Bracers",
       "itemId": "20992",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
       "slot": 7,
       "icone": "icones/inv_bracer_12.jpg"
     },
@@ -76,7 +76,7 @@
       "nome": "Calico Gloves",
       "itemId": "1498",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
       "slot": 8,
       "icone": "icones/inv_gauntlets_18.jpg"
     },
@@ -84,7 +84,7 @@
       "nome": "Wyrm Sash",
       "itemId": "20998",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
       "slot": 9,
       "icone": "icones/inv_belt_03.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "46",
     "armor": "132"
   },
-  "versao": "1787342609",
-  "atualizadoEm": "21/08 20:03"
+  "versao": "1787344704",
+  "atualizadoEm": "21/08 20:38"
 }
