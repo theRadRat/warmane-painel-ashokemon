@@ -7,7 +7,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 3,
-    "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1733\" rel=\"item=1733\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
   },
   {
@@ -40,7 +40,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 7,
-    "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20992\" rel=\"item=20992\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_bracer_12.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-3\">\n                            </a>\n                        </div>"
   },
   {
@@ -51,7 +51,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 8,
-    "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1498\" rel=\"item=1498\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_gauntlets_18.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-4\">\n                            </a>\n                        </div>"
   },
   {
@@ -62,7 +62,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 9,
-    "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20998\" rel=\"item=20998\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_belt_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-5\">\n                            </a>\n                        </div>"
   },
   {
