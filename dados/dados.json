@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+      "tooltip": null,
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "46",
     "armor": "132"
   },
-  "versao": "1787694226",
-  "atualizadoEm": "25/08 21:43"
+  "versao": "1787695453",
+  "atualizadoEm": "25/08 22:04"
 }
