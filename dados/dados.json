@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -151,6 +151,6 @@
     "spirit": "46",
     "armor": "132"
   },
-  "versao": "1788028356",
-  "atualizadoEm": "29/08 18:32"
+  "versao": "1788037940",
+  "atualizadoEm": "29/08 21:12"
 }
