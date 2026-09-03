@@ -40,7 +40,7 @@
       "nome": "Worn Cloak",
       "itemId": "1733",
       "qualidade": null,
-      "tooltip": null,
+      "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
       "slot": 3,
       "icone": "icones/inv_misc_cape_08.jpg"
     },
@@ -48,7 +48,7 @@
       "nome": "Light Silk Robe",
       "itemId": "23367",
       "qualidade": null,
-      "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
+      "tooltip": null,
       "slot": 4,
       "icone": "icones/inv_chest_cloth_24.jpg"
     },
@@ -56,7 +56,7 @@
       "nome": "Acolyte's Shirt",
       "itemId": "6097",
       "qualidade": null,
-      "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
+      "tooltip": null,
       "slot": 5,
       "icone": "icones/inv_shirt_01.jpg"
     },
@@ -68,7 +68,7 @@
       "nome": "Sunrise Bracers",
       "itemId": "20992",
       "qualidade": null,
-      "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+      "tooltip": null,
       "slot": 7,
       "icone": "icones/inv_bracer_12.jpg"
     },
@@ -76,7 +76,7 @@
       "nome": "Calico Gloves",
       "itemId": "1498",
       "qualidade": null,
-      "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
+      "tooltip": null,
       "slot": 8,
       "icone": "icones/inv_gauntlets_18.jpg"
     },
@@ -84,7 +84,7 @@
       "nome": "Wyrm Sash",
       "itemId": "20998",
       "qualidade": null,
-      "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
+      "tooltip": null,
       "slot": 9,
       "icone": "icones/inv_belt_03.jpg"
     },
@@ -92,7 +92,7 @@
       "nome": "Striding Pants",
       "itemId": "21001",
       "qualidade": null,
-      "tooltip": "Striding Pants\nBinds when picked up\n\nLegs\tCloth\n9 Armor\nDurability 30 / 30\nItem Level 5\n\nSell Price: 10",
+      "tooltip": null,
       "slot": 10,
       "icone": "icones/inv_pants_12.jpg"
     },
@@ -100,7 +100,7 @@
       "nome": "Satin Lined Boots",
       "itemId": "23267",
       "qualidade": null,
-      "tooltip": "Satin Lined Boots\nBinds when picked up\n\nFeet\tCloth\n14 Armor\nDurability 25 / 25\nItem Level 11\n\nSell Price: 59",
+      "tooltip": null,
       "slot": 11,
       "icone": "icones/inv_boots_03.jpg"
     },
@@ -124,21 +124,21 @@
       "nome": "Smooth Metal Staff",
       "itemId": "22959",
       "qualidade": null,
-      "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
+      "tooltip": null,
       "slot": 16,
       "icone": "icones/inv_staff_38.jpg"
-    },
-    {
-      "slot": 17,
-      "nome": null
     },
     {
       "nome": "Hoodoo Wand",
       "itemId": "22971",
       "qualidade": null,
-      "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\nSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
-      "slot": 18,
+      "tooltip": null,
+      "slot": 17,
       "icone": "icones/inv_staff_02.jpg"
+    },
+    {
+      "slot": 18,
+      "nome": null
     }
   ],
   "stats": {
@@ -151,6 +151,6 @@
     "spirit": "46",
     "armor": "132"
   },
-  "versao": "1788447520",
-  "atualizadoEm": "03/09 14:58"
+  "versao": "1788460415",
+  "atualizadoEm": "03/09 18:33"
 }
