@@ -7,7 +7,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 3,
-    "tooltip": "Worn Cloak\n\nBack\tCloth\n13 Armor\nRequires Level 10\nItem Level 15\n\nSell Price: 88",
+    "tooltip": "",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1733\" rel=\"item=1733\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_misc_cape_08.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-0\">\n                            </a>\n                        </div>"
   },
   {
@@ -18,7 +18,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 4,
-    "tooltip": "",
+    "tooltip": "Light Silk Robe\nBinds when picked up\n\nChest\tCloth\n10 Armor\nDurability 40 / 40\nItem Level 5\n\nSell Price: 9",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=23367\" rel=\"item=23367\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_chest_cloth_24.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-1\">\n                            </a>\n                        </div>"
   },
   {
@@ -29,7 +29,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 5,
-    "tooltip": "",
+    "tooltip": "Acolyte's Shirt\n\nShirt\t\nSell Price: 1",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=6097\" rel=\"item=6097\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_shirt_01.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-2\">\n                            </a>\n                        </div>"
   },
   {
@@ -40,7 +40,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 7,
-    "tooltip": "",
+    "tooltip": "Sunrise Bracers\nBinds when picked up\n\nWrist\tCloth\n4 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20992\" rel=\"item=20992\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_bracer_12.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-3\">\n                            </a>\n                        </div>"
   },
   {
@@ -51,7 +51,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 8,
-    "tooltip": "",
+    "tooltip": "Calico Gloves\n\nHands\tCloth\n16 Armor\nDurability 18 / 18\nRequires Level 10\nItem Level 15\n\nSell Price: 57",
     "html": "<div class=\"icon-quality icon-quality0\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=1498\" rel=\"item=1498\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_gauntlets_18.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-4\">\n                            </a>\n                        </div>"
   },
   {
@@ -62,7 +62,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 9,
-    "tooltip": "",
+    "tooltip": "Wyrm Sash\nBinds when picked up\n\nWaist\tCloth\n6 Armor\nDurability 14 / 14\nItem Level 5\n\nSell Price: 4",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=20998\" rel=\"item=20998\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_belt_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-5\">\n                            </a>\n                        </div>"
   },
   {
@@ -73,7 +73,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 10,
-    "tooltip": "",
+    "tooltip": "Striding Pants\nBinds when picked up\n\nLegs\tCloth\n9 Armor\nDurability 30 / 30\nItem Level 5\n\nSell Price: 10",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=21001\" rel=\"item=21001\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_pants_12.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-6\">\n                            </a>\n                        </div>"
   },
   {
@@ -84,7 +84,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 11,
-    "tooltip": "",
+    "tooltip": "Satin Lined Boots\nBinds when picked up\n\nFeet\tCloth\n14 Armor\nDurability 25 / 25\nItem Level 11\n\nSell Price: 59",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=23267\" rel=\"item=23267\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_boots_03.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-7\">\n                            </a>\n                        </div>"
   },
   {
@@ -95,7 +95,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 16,
-    "tooltip": "",
+    "tooltip": "Smooth Metal Staff\nBinds when picked up\n\nTwo-hand\tStaff\n13 - 20 Damage\nSpeed 2.90\n(5.7 damage per second)\nDurability 45 / 45\nItem Level 10\n\nSell Price: 1 83",
     "html": "<div class=\"icon-quality icon-quality1\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22959\" rel=\"item=22959\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_38.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-8\">\n                            </a>\n                        </div>"
   },
   {
@@ -106,7 +106,7 @@
     "w": 50,
     "h": 50,
     "slot_geo": 17,
-    "tooltip": "",
+    "tooltip": "Hoodoo Wand\nBinds when picked up\n\nRanged\tWand\n9 - 17 Damage\nSpeed 1.60\n(8.1 damage per second)\nDurability 30 / 30\nItem Level 11\n\nSell Price: 2 31",
     "html": "<div class=\"icon-quality icon-quality2\">\n                            <a target=\"_blank\" href=\"http://wotlk.cavernoftime.com/item=22971\" rel=\"item=22971\">\n                                <img src=\"http://cdn.warmane.com/wotlk/icons/large/inv_staff_02.jpg\" width=\"50\" height=\"50\" data-cap=\"icone-9\">\n                            </a>\n                        </div>"
   }
 ]
